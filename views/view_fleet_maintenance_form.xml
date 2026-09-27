@@ -26,10 +26,11 @@
 
                     <sheet>
                         <group>
-                            <field name="vehicle_id" />
-                            <field name="assigned_mechanic_id" />
+                            <field name="is_fleet_manager" invisible="1" />
+                            <field name="vehicle_id" readonly="not is_fleet_manager" />
+                            <field name="assigned_mechanic_id" readonly="not is_fleet_manager" />
                             <field name="issue_description" />
-                            <field name="scheduled_date" />
+                            <field name="scheduled_date" readonly="not is_fleet_manager" />
                             <field name="completed_date" />
                             <field name="parts_used_ids" widget="many2many_tags" />
                             <field name="total_parts_cost" />

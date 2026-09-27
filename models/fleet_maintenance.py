@@ -1,14 +1,14 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, AccessError
 
 class FleetMaintenance(models.Model):
     _name = 'fleet.maintenance'
     _description = 'Fleet Maintenace'
 
-    vehicle_id = fields.Many2one(comodel_name='fleet.vehicle', string='Vehicle')
-    assigned_mechanic_id = fields.Many2one(comodel_name='res.users', string='Assigned Mechanic')
+    vehicle_id = fields.Many2one(comodel_name='fleet.vehicle', string='Vehicle', required=True)
+    assigned_mechanic_id = fields.Many2one(comodel_name='res.users', string='Assigned Mechanic', required=True)
     issue_description = fields.Text(string='Issue Description')
-    scheduled_date = fields.Date(string='Scheduled Date')
+    scheduled_date = fields.Date(string='Scheduled Date', required=True)
     completed_date = fields.Date(string='Completed Date')
     parts_used_ids = fields.Many2many(comodel_name='fleet.part', string='Parts Used')
     total_parts_cost = fields.Float(string='Total Parts Cost', compute='_compute_total_parts_cost', store=True)
@@ -19,6 +19,9 @@ class FleetMaintenance(models.Model):
         ('done', 'Done'),
         ('cancelled', 'Cancelled'),
     ], string='State', default='draft', required=True)
+
+    is_fleet_manager = fields.Boolean(compute='_compute_is_fleet_manager')
+    _MECHANIC_RESTRICTED_FIELDS = {'vehicle_id','assigned_mechanic_id','scheduled_date'}
 
     def action_confirm(self):
         for record in self:
@@ -79,3 +82,19 @@ class FleetMaintenance(models.Model):
         for record in self:
             if record.state in ('draft', 'scheduled') and record.completed_date:
                 raise ValidationError(f"Vehicle state is on {record.state}, you cannot set completed date yet.")
+    
+    def _compute_is_fleet_manager(self):
+        is_manager = self.env.user.has_group('advanced_fleet_maintenance_scheduler.group_fleet_manager')
+        for record in self:
+            record.is_fleet_manager = is_manager
+
+    def write(self, vals):
+        if not self.env.user.has_group('your_module_name.group_fleet_manager'):
+            touched_restricted = self._MECHANIC_RESTRICTED_FIELDS & set(vals.keys())
+            if touched_restricted:
+                raise AccessError(
+                    "You don't have permission to change: %s. "
+                    "Contact a Fleet Manager to reassign or reschedule this job."
+                    % ', '.join(touched_restricted)
+                )
+        return super().write(vals)
