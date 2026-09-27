@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="fleet_maintenance_form_view" model="ir.ui.view">
+            <field name="name">fleet.maintenance.form.view</field>
+            <field name="model">fleet.maintenance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object"
+                            class="btn-primary" invisible="state != 'draft'" />
+                        <button name="action_start" string="Start Work" type="object"
+                            class="btn-primary" invisible="state != 'scheduled'" />
+                        <button name="action_done" string="Mark Done" type="object"
+                            class="btn-primary" invisible="state != 'in_progress'" />
+                        <button name="action_cancelled" string="Cancel" type="object"
+                            class="btn-secondary" invisible="state in ('done', 'cancelled')" />
+                        <button name="action_print_job_sheet" string="Print Job Sheet"
+                            type="object"
+                            class="btn-primary" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,scheduled,in_progress,done" />
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <field name="vehicle_id" />
+                            <field name="assigned_mechanic_id" />
+                            <field name="issue_description" />
+                            <field name="scheduled_date" />
+                            <field name="completed_date" />
+                            <field name="parts_used_ids" widget="many2many_tags" />
+                            <field name="total_parts_cost" />
+                            <field name="state" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View -->
+        <record id="fleet_maintenance_list_view" model="ir.ui.view">
+            <field name="name">fleet.maintenance.list.view</field>
+            <field name="model">fleet.maintenance</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="vehicle_id" />
+                    <field name="assigned_mechanic_id" />
+                    <field name="scheduled_date" />
+                    <field name="completed_date" />
+                    <field name="parts_used_ids" />
+                    <field name="total_parts_cost" />
+                    <field name="state" />
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>
