@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="ir_rule_fleet_mechanic" model="ir.rule">
+            <field name="name">Rule Fleet Mechanic</field>
+            <field name="model_id" ref="model_fleet_maintenance" />
+            <field name="domain_force">[('assigned_mechanic_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_fleet_mechanic'))]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+        </record>
+    </data>
+</odoo>

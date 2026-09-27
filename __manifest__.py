@@ -16,12 +16,15 @@
         'base'
     ],
     'data': [
-        'security/group_fleet_manager.xml',
+        'security/group_fleet_maintenance.xml',
         'security/ir.model.access.csv',
+        'security/ir_rule_fleet_mechanic.xml',
+        'views/fleet_actions.xml',
         'views/action_maintenance_job_sheet.xml',
         'views/vehicle_maintenance_qweb_template.xml',
         'views/views_fleet_maintenance.xml',
         'views/views_fleet_part.xml',
         'views/views_fleet_vehicle.xml',
+        'views/fleet_menus.xml',
     ]
 }

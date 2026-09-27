@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!-- Fleet Manager Group -->
+        <record id="group_fleet_manager" model="res.groups">
+            <field name="name">Fleet Manager</field>
+        </record>
+
+        <!-- Fleet Mechanic Group -->
+        <record id="group_fleet_mechanic" model="res.groups">
+            <field name="name">Fleet Mechanic</field>
+        </record>
+    </data>
+</odoo>

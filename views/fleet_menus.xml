@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <menuitem id="menu_fleet_maintenance_root" name="Fleet Maintenance" sequence="10"
+            web_icon="advanced_fleet_maintenance_scheduler,static/description/icon.png" />
+        <menuitem id="menu_maintenance_job" name="Maintenance Jobs" sequence="20"
+            parent="menu_fleet_maintenance_root" action="action_fleet_maintenance" />
+        <menuitem id="menu_fleet_configuration" name="Configuration" sequence="30"
+            parent="menu_fleet_maintenance_root" />
+        <menuitem id="menu_fleet_vehicle" name="Vehicles" sequence="90"
+            parent="menu_fleet_configuration" action="action_fleet_vehicle" />
+        <menuitem id="menu_fleet_parts" name="Parts" sequence="100"
+            parent="menu_fleet_configuration" action="action_fleet_part" />
+    </data>
+</odoo>
