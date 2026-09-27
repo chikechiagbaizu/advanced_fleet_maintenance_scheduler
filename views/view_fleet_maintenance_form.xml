@@ -39,22 +39,5 @@
                 </form>
             </field>
         </record>
-
-        <!-- List View -->
-        <record id="fleet_maintenance_list_view" model="ir.ui.view">
-            <field name="name">fleet.maintenance.list.view</field>
-            <field name="model">fleet.maintenance</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="vehicle_id" />
-                    <field name="assigned_mechanic_id" />
-                    <field name="scheduled_date" />
-                    <field name="completed_date" />
-                    <field name="parts_used_ids" />
-                    <field name="total_parts_cost" />
-                    <field name="state" />
-                </list>
-            </field>
-        </record>
     </data>
 </odoo>

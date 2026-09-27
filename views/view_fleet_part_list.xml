@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!-- List View -->
+        <record id="fleet_part_list_view" model="ir.ui.view">
+            <field name="name">fleet.part.list.view</field>
+            <field name="model">fleet.part</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name" />
+                    <field name="unit_cost" />
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>
