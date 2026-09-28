@@ -23,7 +23,6 @@
                         <field name="state" widget="statusbar"
                             statusbar_visible="draft,scheduled,in_progress,done" />
                     </header>
-
                     <sheet>
                         <group>
                             <field name="is_fleet_manager" invisible="1" />
@@ -32,7 +31,14 @@
                             <field name="issue_description" />
                             <field name="scheduled_date" readonly="not is_fleet_manager" />
                             <field name="completed_date" />
-                            <field name="parts_used_ids" widget="many2many_tags" />
+                            <field name="part_line_ids">
+                                <list editable="bottom">
+                                    <field name="part_id" />
+                                    <field name="quantity" />
+                                    <field name="unit_cost" readonly="1" />
+                                    <field name="subtotal" readonly="1" />
+                                </list>
+                            </field>
                             <field name="total_parts_cost" />
                             <field name="state" />
                         </group>

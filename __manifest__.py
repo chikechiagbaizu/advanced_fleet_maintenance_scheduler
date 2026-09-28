@@ -20,14 +20,14 @@
         'security/ir.model.access.csv',
         'security/ir_rule_fleet_mechanic.xml',
         'views/fleet_actions.xml',
-        'report/fleet_maintenance_report_action.xml',
-        'report/fleet_maintenance_report_template.xml',
         'views/view_fleet_maintenance_form.xml',
         'views/view_fleet_maintenance_list.xml',
         'views/view_fleet_part_form.xml',
         'views/view_fleet_part_list.xml',
         'views/view_fleet_vehicle_form.xml',
         'views/view_fleet_vehicle_list.xml',
+        'report/action_vehicle_maintenance_job_sheet.xml',
+        'report/vehicle_maintenance_job_sheet.xml',
         'views/fleet_menus.xml',
     ]
 }

@@ -3,14 +3,14 @@
 <odoo>
     <data>
         <!-- Report Action -->
-        <record id="action_vehicle_maintenance_job" model="ir.actions.report">
+        <record id="action_vehicle_maintenance_job_sheet" model="ir.actions.report">
             <field name="name">Maintenance Job Sheet</field>
             <field name="model">fleet.maintenance</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">
-                advanced_fleet_maintenance_scheduler.report_vehicle_maintenance_job_sheet</field>
-            <field name="report_file">
-                advanced_fleet_maintenance_scheduler.report_vehicle_maintenance_job_sheet</field>
+            <field name="report_name"
+                eval="'advanced_fleet_maintenance_scheduler.report_vehicle_maintenance_job_sheet'" />
+            <field name="report_file"
+                eval="'advanced_fleet_maintenance_scheduler.report_vehicle_maintenance_job_sheet'" />
             <field name="binding_model_id" ref="model_fleet_maintenance" />
             <field name="binding_type">report</field>
         </record>

@@ -53,12 +53,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr t-foreach="o.parts_used_ids" t-as="part">
+                                    <tr t-foreach="o.part_line_ids" t-as="line">
                                         <td>
-                                            <span t-field="part.name" />
+                                            <span t-field="line.part_id.name" />
                                         </td>
                                         <td class="text-end">
-                                            <span t-field="part.unit_cost" />
+                                            <span t-field="line.quantity" />
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="line.unit_cost" />
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="line.subtotal" />
                                         </td>
                                     </tr>
                                 </tbody>

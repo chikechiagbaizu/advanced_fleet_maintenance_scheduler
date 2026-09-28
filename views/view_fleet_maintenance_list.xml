@@ -12,7 +12,7 @@
                     <field name="assigned_mechanic_id" />
                     <field name="scheduled_date" />
                     <field name="completed_date" />
-                    <field name="parts_used_ids" />
+                    <field name="part_line_ids" />
                     <field name="total_parts_cost" />
                     <field name="state" />
                 </list>

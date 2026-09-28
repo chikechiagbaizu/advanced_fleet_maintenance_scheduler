@@ -10,7 +10,7 @@ class FleetMaintenance(models.Model):
     issue_description = fields.Text(string='Issue Description')
     scheduled_date = fields.Date(string='Scheduled Date', required=True)
     completed_date = fields.Date(string='Completed Date')
-    parts_used_ids = fields.Many2many(comodel_name='fleet.part', string='Parts Used')
+    part_line_ids = fields.One2many(comodel_name='fleet.maintenance.part.line', inverse_name='maintenance_id', string='Parts Used')                     
     total_parts_cost = fields.Float(string='Total Parts Cost', compute='_compute_total_parts_cost', store=True)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
@@ -65,16 +65,16 @@ class FleetMaintenance(models.Model):
             }
         }
     
-    @api.depends('parts_used_ids.unit_cost')
+    @api.depends('part_line_ids.subtotal')
     def _compute_total_parts_cost(self):
         for record in self:
-            record.total_parts_cost = sum(record.parts_used_ids.mapped('unit_cost'))
+            record.total_parts_cost = sum(record.part_line_ids.mapped('subtotal'))
     
     def action_print_job_sheet(self):
         self.ensure_one()
 
         return self.env.ref(
-            'advanced_fleet_maintenance_scheduler.action_vehicle_maintenance_job'
+            'advanced_fleet_maintenance_scheduler.action_vehicle_maintenance_job_sheet'
         ).report_action(self)
 
     @api.constrains('completed_date')
